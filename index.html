@@ -3,9 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>My first three.js app</title>
-    <style>
-      body { margin: 0; }
-    </style>
+<style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+</style>
+    <!-- imports die door het gehele project gebruikt worden -->
+    <script type="importmap">
+        {
+            "imports": { 
+                "three": "https://unpkg.com/three@0.171.0/build/three.module.js", 
+                "three/addons/": "https://unpkg.com/three@0.171.0/examples/jsm/"
+            }
+        }
+    </script>
   </head>
   <body>
     <script type="module" src="scene.js"></script>
