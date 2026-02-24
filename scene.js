@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { createCube } from './Models/cube.js';
 import { createSkybox } from './Skybox/skybox.js';
 import { createRoad } from './Models/road.js';
+import { createHouse } from './Models/house.js';
 
 //idk of dit mag van de opdracht, maar is voor nu even handig ofz. Navragen bij Ward
 import { OrbitControls } from 'https://unpkg.com/three@0.171.0/examples/jsm/controls/OrbitControls.js';
@@ -27,6 +28,10 @@ document.body.appendChild( renderer.domElement );
 const road = createRoad(0x5c5c5c);
 scene.add(road);
 road.position.y = -1;
+
+const house = createHouse();
+scene.add(house);
+house.position.set(1, 0, -4);
 
 camera.position.set(0, 0, 0);
 
