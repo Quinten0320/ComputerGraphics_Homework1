@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { createSkybox } from './Skybox/skybox.js';
-import { createRoad, createUnderground, createDriveway } from './Models/underground.js';
+import { createRoad, createUnderground, createDriveway } from './Models/surfaces.js';
 
 import { OrbitControls } from 'https://unpkg.com/three@0.171.0/examples/jsm/controls/OrbitControls.js';
 
