@@ -1,8 +1,0 @@
-import * as THREE from 'three';
-
-export function createCube(color = 0x00ff00) {
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: color });
-    const cube = new THREE.Mesh(geometry, material);
-    return cube;
-}
