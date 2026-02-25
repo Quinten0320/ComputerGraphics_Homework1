@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { createSkybox } from './Skybox/skybox.js';
-import { createRoad, createUnderground, createDriveway } from './Models/surfaces.js';
+import { createSurface } from './Models/surfaces.js';
 
 import { OrbitControls } from 'https://unpkg.com/three@0.171.0/examples/jsm/controls/OrbitControls.js';
 
@@ -20,18 +20,9 @@ controls.update();
 renderer.setSize( window.innerWidth, window.innerHeight ); //set size of renderer to size of window
 document.body.appendChild( renderer.domElement );
 
-//road
-const road = createRoad(0x5c5c5c);
-scene.add(road);
-road.position.y = -1;
-
-//green underground (grass)
-const underground = createUnderground(0x228B22);
-scene.add(underground);
-
-//driveway
-const driveway = createDriveway();
-scene.add(driveway);
+//surface
+const surface = createSurface();
+scene.add(surface);
 
 camera.position.set(0, 0, 0);
 
