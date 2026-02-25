@@ -29,9 +29,12 @@ const road = createRoad(0x5c5c5c);
 scene.add(road);
 road.position.y = -1;
 
-const house = createHouse();
-scene.add(house);
-house.position.set(1, 0, -4);
+// Create 6 houses
+for (let i = 0; i < 6; i += 1) {
+  const house = createHouse();
+  scene.add(house);
+  house.position.set(1 + i * 2, 0, -4);
+}
 
 camera.position.set(0, 0, 0);
 
