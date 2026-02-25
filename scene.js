@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createSkybox } from './Skybox/skybox.js';
 import { createSurface } from './Models/surfaces.js';
+import { createGarageHouse } from './Models/garageHouse.js';
 
 import { OrbitControls } from 'https://unpkg.com/three@0.171.0/examples/jsm/controls/OrbitControls.js';
 
@@ -23,6 +24,12 @@ document.body.appendChild( renderer.domElement );
 //surface
 const surface = createSurface();
 scene.add(surface);
+
+//garage house
+for (let i = 0; i < 4; i++) {
+    const garageHouse = createGarageHouse({ x: 19, y: 0, z: -1 - i * 4 });
+    scene.add(garageHouse);
+}
 
 camera.position.set(0, 0, 0);
 
