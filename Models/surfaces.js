@@ -14,49 +14,96 @@ export function createSurface() {
     driveway2.rotation.y = Math.PI / 2; 
 
     surface.add(grass, road, road2, circle, driveway, driveway2);
+    surface.receiveShadow = true;
 
     return surface;
 }
 
 function createRoad(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.BoxGeometry(15, 0.1, 2);
+    const loader = new THREE.TextureLoader();
     geometry.translate(7.5, 0, 0);
 
-    const material = new THREE.MeshBasicMaterial({ color: color });
+    const roadTexture = loader.load('./Textures/Asphalt.jpg');
+        roadTexture.wrapS = THREE.RepeatWrapping;
+        roadTexture.wrapT = THREE.RepeatWrapping;
+        roadTexture.repeat.set(50, 5);
+
+    const material = new THREE.MeshStandardMaterial({ 
+        color: color,
+        map: roadTexture
+    });  
     const mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.set(x, y, z);
+    mesh.receiveShadow = true;
+    mesh.castShadow = false;
     return mesh;
 }
 
 function createCircle(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.CylinderGeometry(2, 1, 0.1, 32);
+    const loader = new THREE.TextureLoader();
 
-    const material = new THREE.MeshBasicMaterial({ color: color });
+    const roadTexture = loader.load('./Textures/Asphalt.jpg');
+        roadTexture.wrapS = THREE.RepeatWrapping;
+        roadTexture.wrapT = THREE.RepeatWrapping;
+        roadTexture.repeat.set(50, 5);
+
+
+    const material = new THREE.MeshStandardMaterial({ 
+        color: color,
+        map: roadTexture
+    });
     const mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.set(x, y, z);
+    mesh.position.y += 0.001;
+    mesh.receiveShadow = false;
+    mesh.castShadow = false;        
     return mesh;
 }
 
 function createGrass(color = 0x228B22, { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.BoxGeometry(30, 0.1, 30);
+    const loader = new THREE.TextureLoader();
     geometry.translate(8, 0, 0);
 
-    const material = new THREE.MeshBasicMaterial({ color: color });
+    const grassTexture = loader.load('./Textures/grass.jpg');
+        grassTexture.wrapS = THREE.RepeatWrapping;
+        grassTexture.wrapT = THREE.RepeatWrapping;
+        grassTexture.repeat.set(50, 50);
+
+    const material = new THREE.MeshStandardMaterial({ 
+        color: color,
+        map: grassTexture
+    });
     const mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.set(x, y, z);
+    mesh.receiveShadow = true;
+    mesh.castShadow = false;
     return mesh;
 }
 
 function createDriveway(color = 0xA0896B, length, { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.BoxGeometry(length, 0.1, 2);
+    const loader = new THREE.TextureLoader();
+    const drivewayTexture = loader.load('./Textures/FloorBricks.jpg');
+        drivewayTexture.wrapS = THREE.RepeatWrapping;
+        drivewayTexture.wrapT = THREE.RepeatWrapping;
+        drivewayTexture.repeat.set(5, 1);
+
     geometry.translate(length / 2, 0, 0);
 
-    const material = new THREE.MeshBasicMaterial({ color: color });
+    const material = new THREE.MeshStandardMaterial({ 
+        color: color,
+        map: drivewayTexture
+    });
     const mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.set(x, y, z);
+    mesh.receiveShadow = true;
+    mesh.castShadow = false;
     return mesh;
 }
