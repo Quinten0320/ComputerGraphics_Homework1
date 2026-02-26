@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createSkybox } from './Skybox/skybox.js';
-import { createRoad, createUnderground, createDriveway } from './Models/surfaces.js';
+import { createSurface } from './Models/surfaces.js';
+import { createGarageHouse } from './Models/garageHouse.js';
 
 import { OrbitControls } from 'https://unpkg.com/three@0.171.0/examples/jsm/controls/OrbitControls.js';
 
@@ -20,18 +21,15 @@ controls.update();
 renderer.setSize( window.innerWidth, window.innerHeight ); //set size of renderer to size of window
 document.body.appendChild( renderer.domElement );
 
-//road
-const road = createRoad(0x5c5c5c);
-scene.add(road);
-road.position.y = -1;
+//surface
+const surface = createSurface();
+scene.add(surface);
 
-//green underground (grass)
-const underground = createUnderground(0x228B22);
-scene.add(underground);
-
-//driveway
-const driveway = createDriveway();
-scene.add(driveway);
+//garage house
+for (let i = 0; i < 4; i++) {
+    const garageHouse = createGarageHouse({ x: 19, y: 0, z: -1 - i * 4 });
+    scene.add(garageHouse);
+}
 
 camera.position.set(0, 0, 0);
 
