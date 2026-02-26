@@ -29,8 +29,8 @@ function createShed(color = 0x654321, { x = 0, y = 0, z = 0 } = {}) {
     
     const door = createDoor('./Textures/ShedDoor.jpg', 0x654321, { x: -3, y: -0.5, z: 1.6 });
     const door2 = createDoor('./Textures/ShedDoor.jpg', 0x654321, { x: -3, y: -0.5, z: 2.40 });
-    door.rotation.y = Math.PI / 1;
-    door2.rotation.y = Math.PI / 1;
+    door.rotation.y = Math.PI;
+    door2.rotation.y = Math.PI;
 
     shedGroup.add(mesh, door, door2);
     mesh.position.set(x, y, z);
