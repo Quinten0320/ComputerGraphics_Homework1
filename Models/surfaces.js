@@ -14,7 +14,6 @@ export function createSurface() {
     driveway2.rotation.y = Math.PI / 2; 
 
     surface.add(grass, road, road2, circle, driveway, driveway2);
-    surface.receiveShadow = true;
 
     return surface;
 }

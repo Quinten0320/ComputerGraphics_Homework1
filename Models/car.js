@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {GLTFLoader} from "https://cdn.rawgit.com/mrdoob/three.js/master/examples/jsm/loaders/GLTFLoader.js";
+import {GLTFLoader} from 'https://unpkg.com/three@0.171.0/examples/jsm/loaders/GLTFLoader.js';
 
 export function createCar({ x = 0, y = 0, z = 0 } = {}) {
     const carGroup = new THREE.Group();
@@ -20,8 +20,6 @@ export function createCar({ x = 0, y = 0, z = 0 } = {}) {
 
         carModel.rotation.y = Math.PI / 1.5;
 
-        carGroup.castShadow = true;
-        carGroup.receiveShadow = true;
         carGroup.add(carModel);
     }, undefined, function (error) {
         console.error(error);
@@ -33,8 +31,8 @@ export function createCar({ x = 0, y = 0, z = 0 } = {}) {
     function carAnimation(time) {
         let t = time / 500;
         let angle = t * 1;
-        carGroup.position.x = 13 + Math.cos(angle) * 1.3;
-        carGroup.position.z = 1 - Math.sin(angle) * 1.3;
+        carGroup.position.x = x + Math.cos(angle) * 1.3;
+        carGroup.position.z = z - Math.sin(angle) * 1.3;
         carGroup.rotation.y = angle + Math.PI / 2;
     }
     

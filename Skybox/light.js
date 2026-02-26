@@ -5,7 +5,6 @@ export function createSun({ x = 0, y = 0, z = 0 } = {}) {
     const sunGroup = new THREE.Group();
 
     const light = new THREE.DirectionalLight(0xffffff, 5);
-    light.position.set(x, y, z);
     light.target.position.set(0, 0, 0);
     light.castShadow = true;
 
@@ -21,7 +20,6 @@ export function createSun({ x = 0, y = 0, z = 0 } = {}) {
 
     light.shadow.normalBias = 0.1;
 
-    
     sunGroup.add(light);
 
     sunGroup.position.set(x, y, z);
