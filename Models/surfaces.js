@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 
+const loader = new THREE.TextureLoader();
+
 export function createSurface() {
     const surface = new THREE.Group();
 
@@ -20,7 +22,6 @@ export function createSurface() {
 
 function createRoad(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.BoxGeometry(15, 0.1, 2);
-    const loader = new THREE.TextureLoader();
     geometry.translate(7.5, 0, 0);
 
     const roadTexture = loader.load('./Textures/Asphalt.jpg');
@@ -42,7 +43,6 @@ function createRoad(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
 
 function createCircle(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.CylinderGeometry(2, 1, 0.1, 32);
-    const loader = new THREE.TextureLoader();
 
     const roadTexture = loader.load('./Textures/Asphalt.jpg');
         roadTexture.wrapS = THREE.RepeatWrapping;
@@ -63,7 +63,6 @@ function createCircle(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
 
 function createGrass(color = 0x228B22, { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.BoxGeometry(30, 0.1, 30);
-    const loader = new THREE.TextureLoader();
     geometry.translate(8, 0, 0);
 
     const grassTexture = loader.load('./Textures/grass.jpg');
@@ -85,7 +84,6 @@ function createGrass(color = 0x228B22, { x = 0, y = 0, z = 0 } = {}) {
 
 function createDriveway(color = 0xA0896B, length, { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.BoxGeometry(length, 0.1, 2);
-    const loader = new THREE.TextureLoader();
     const drivewayTexture = loader.load('./Textures/FloorBricks.jpg');
         drivewayTexture.wrapS = THREE.RepeatWrapping;
         drivewayTexture.wrapT = THREE.RepeatWrapping;
