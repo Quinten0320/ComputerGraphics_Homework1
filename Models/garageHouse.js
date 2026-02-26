@@ -164,10 +164,17 @@ function createGroundFloor({ x = 0, y = 0, z = 0 } = {}) {
     const material = new THREE.MeshStandardMaterial({ map: brickTexture });
     const mesh = new THREE.Mesh(geometry, material);
 
-    mesh.position.set(x, y, z); 
-mesh.castShadow = true;
-mesh.receiveShadow = true;
     
-    groundFloor.add(mesh, door1, door2, bigWindow1, bigWindow2, smallWindow1, smallWindow2);
+    const drain = new THREE.CylinderGeometry(0.05, 0.05, 3.5, 32, 1, true)
+    const drainMaterial = new THREE.MeshStandardMaterial({ 
+        color: 0xFFFFFF,
+        side: THREE.DoubleSide
+    });
+    const drainMesh = new THREE.Mesh(drain, drainMaterial);
+
+    drainMesh.position.set(-2.05, -0.5, 2);
+
+    
+    groundFloor.add(mesh, door1, door2, bigWindow1, bigWindow2, smallWindow1, smallWindow2, drainMesh);
     return groundFloor;
 }

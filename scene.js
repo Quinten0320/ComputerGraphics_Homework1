@@ -20,6 +20,16 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 //Orbitcontrols
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;   
+controls.dampingFactor = 0.05;   
+
+controls.enableZoom = true;      
+controls.minDistance = 2;        
+controls.maxDistance = 50;       
+
+controls.target.set(0.1, 0, 0);
+controls.update();
+
 controls.target.set(0.1, 0, 0);
 controls.update();
 
