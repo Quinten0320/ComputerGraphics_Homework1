@@ -49,8 +49,6 @@ function createCircle(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
         roadTexture.wrapS = THREE.RepeatWrapping;
         roadTexture.wrapT = THREE.RepeatWrapping;
         roadTexture.repeat.set(50, 5);
-
-
     const material = new THREE.MeshStandardMaterial({ 
         color: color,
         map: roadTexture
@@ -59,7 +57,7 @@ function createCircle(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
 
     mesh.position.set(x, y, z);
     mesh.position.y += 0.001;
-    mesh.receiveShadow = false;
+    mesh.receiveShadow = true;
     mesh.castShadow = false;        
     return mesh;
 }

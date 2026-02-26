@@ -46,7 +46,12 @@ function createShed(color = 0x654321, { x = 0, y = 0, z = 0 } = {}) {
 
 function createWindow(color = 0x87CEEB, { sizeX = 0, sizeY = 0} = {},  { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.BoxGeometry(sizeX, sizeY, 0.05);
-    const material = new THREE.MeshStandardMaterial({ color: color , shininess: 100  });
+    const material = new THREE.MeshStandardMaterial({
+        color: 0x87CEEB,  
+        metalness: 0.8,   
+        roughness: 0.1,  
+        opacity: 0.8
+    });
     const mesh = new THREE.Mesh(geometry, material);
 
     geometry.center();

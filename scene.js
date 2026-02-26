@@ -37,8 +37,8 @@ for (let i = 0; i < 4; i++) {
 }
 
 //car
-const car = createCar({ x: 5, y: -0.8, z: 0 });
-scene.add(car);
+const { carGroup, update: carAnimation } = createCar({ x: 13, y: -0.8, z: 1 });
+scene.add(carGroup);
 
 //light
 const sun = createSun({ x: -60, y: 40, z: -60 });
@@ -50,7 +50,7 @@ camera.position.set(0, 0, 0);
 function animate( time ) {
   controls.update();  //Orbitcontrols
 
-  //TODO: animate car, mss kunnen we deze ook importeren ofz.
+  carAnimation(time);
 
   renderer.render( scene, camera );
 }
