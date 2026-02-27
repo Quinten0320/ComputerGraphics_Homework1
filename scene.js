@@ -8,7 +8,6 @@ import { createSun } from './Skybox/light.js';
 import { createAmbientLight } from './Skybox/light.js';
 import { createCamera, updateCamera } from './Skybox/camera.js';
 
-import { OrbitControls } from 'https://unpkg.com/three@0.171.0/examples/jsm/controls/OrbitControls.js';
       
 const scene = new THREE.Scene();
 
@@ -21,7 +20,7 @@ const { camera, controls } = createCamera(renderer);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-renderer.setSize( window.innerWidth, window.innerHeight ); //set size of renderer to size of window
+renderer.setSize( window.innerWidth, window.innerHeight ); //set size of renderer to size of window (might be redundant?)
 document.body.appendChild( renderer.domElement );
 
 //surface
