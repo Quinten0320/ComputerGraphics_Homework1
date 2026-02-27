@@ -74,7 +74,7 @@ function createDoor() {
     return door;
 }
 
-// Luifel boven de deur
+// ding boven deur
 function createCanopy() {
     const roof = new THREE.Mesh(
         new THREE.BoxGeometry(0.7, 0.05, 0.35),
@@ -85,7 +85,6 @@ function createCanopy() {
     return roof;
 }
 
-// Ramen: begane grond rechts, verdieping links (smal) en rechts (breed)
 function createWindows() {
     const frameMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
     const glassMat = new THREE.MeshBasicMaterial({ color: 0xadd8e6, transparent: true, opacity: 0.6 });
@@ -93,14 +92,13 @@ function createWindows() {
     function makeWindow(w, h, x, y, z) {
         const group = new THREE.Group();
 
-        // Frame (iets groter dan glas)
+        // frame om glas heen.
         const frame = new THREE.Mesh(
             new THREE.BoxGeometry(w + 0.06, h + 0.06, 0.05),
             frameMat
         );
         group.add(frame);
 
-        // Glas
         const glass = new THREE.Mesh(
             new THREE.BoxGeometry(w, h, 0.06),
             glassMat
@@ -112,18 +110,18 @@ function createWindows() {
     }
 
     return [
-        // Begane grond: groot raam rechts
+        // grond
         makeWindow(0.8, 0.7, 0.55, -0.3, 1.06),
 
-        // Verdieping: smal raam links
+        // 1e verdieping links
         makeWindow(0.22, 0.55, -0.6, 1.5, 1.06),
 
-        // Verdieping: breed raam rechts
+        //1e verdieping rechts
         makeWindow(0.75, 0.55, 0.45, 1.5, 1.06),
     ];
 }
 
-// Twee schoorstenen op het dak
+// twee schoorstenen op het dak
 function createChimneys() {
     const mat = new THREE.MeshBasicMaterial({ color: 0x5a3e36 });
     const capMat = new THREE.MeshBasicMaterial({ color: 0x333333 });
@@ -137,7 +135,7 @@ function createChimneys() {
         );
         group.add(body);
 
-        // Dakje bovenop schoorsteen
+        // cap op schoosten
         const cap = new THREE.Mesh(
             new THREE.BoxGeometry(0.16, 0.04, 0.16),
             capMat

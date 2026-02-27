@@ -52,7 +52,7 @@ export function updateCamera(camera, controls) {
     if (keys['e']) move.y += MOVE_SPEED;
     if (keys['q']) move.y -= MOVE_SPEED;
 
-    // So that orbitcontrols doesnt snap back when moving with wasdqe
+    // so that orbitcontrols doesnt snap back when moving with wasdqe
     camera.position.add(move);
     controls.target.add(move);
 
