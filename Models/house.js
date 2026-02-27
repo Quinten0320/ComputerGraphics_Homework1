@@ -24,7 +24,7 @@ function createBottomHouse() {
 
     return new THREE.Mesh(
         new THREE.BoxGeometry(2, 2, 2),
-        new THREE.MeshBasicMaterial({ map: brickTexture })
+        new THREE.MeshStandardMaterial({ map: brickTexture })
     );
 }
 
@@ -37,7 +37,7 @@ function createTopHouse() {
 
     const top = new THREE.Mesh(
         new THREE.BoxGeometry(2, 1, 2),
-        new THREE.MeshBasicMaterial({ map: yellowBrickTexture })
+        new THREE.MeshStandardMaterial({ map: yellowBrickTexture })
     );
     top.position.y = 1.5;
     return top;
@@ -58,7 +58,7 @@ function createRoof() {
 
     const extrudeSettings = { depth: 2, bevelEnabled: false };
     const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-    const material = new THREE.MeshBasicMaterial({ map: roofTexture });
+    const material = new THREE.MeshStandardMaterial({ map: roofTexture });
 
     const roof = new THREE.Mesh(geometry, material);
     roof.rotation.y = Math.PI / 2;
@@ -68,7 +68,7 @@ function createRoof() {
 
 function createDoor() {
     const geometry = new THREE.BoxGeometry(0.5, 1, 0.1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x2b2b2b });
+    const material = new THREE.MeshStandardMaterial({ color: 0x2b2b2b });
     const door = new THREE.Mesh(geometry, material);
     door.position.set(-0.25, -0.5, 1.05);
     return door;
@@ -78,7 +78,7 @@ function createDoor() {
 function createCanopy() {
     const roof = new THREE.Mesh(
         new THREE.BoxGeometry(0.7, 0.05, 0.35),
-        new THREE.MeshBasicMaterial({ color: 0x888888 })
+        new THREE.MeshStandardMaterial({ color: 0x888888 })
     );
     roof.position.set(-0.25, 0.1, 1.2)
 
@@ -86,8 +86,8 @@ function createCanopy() {
 }
 
 function createWindows() {
-    const frameMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-    const glassMat = new THREE.MeshBasicMaterial({ color: 0xadd8e6, transparent: true, opacity: 0.6 });
+    const frameMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const glassMat = new THREE.MeshStandardMaterial({ color: 0xadd8e6, transparent: true, opacity: 0.6 });
 
     function makeWindow(w, h, x, y, z) {
         const group = new THREE.Group();
@@ -123,8 +123,8 @@ function createWindows() {
 
 // twee schoorstenen op het dak
 function createChimneys() {
-    const mat = new THREE.MeshBasicMaterial({ color: 0x5a3e36 });
-    const capMat = new THREE.MeshBasicMaterial({ color: 0x333333 });
+    const mat = new THREE.MeshStandardMaterial({ color: 0x5a3e36 });
+    const capMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
 
     function makeChimney(x, z) {
         const group = new THREE.Group();
@@ -154,7 +154,7 @@ function createChimneys() {
 }
 
 function createRainPipe() {
-    const mat = new THREE.MeshBasicMaterial({ color: 0x444444 });
+    const mat = new THREE.MeshStandardMaterial({ color: 0x444444 });
     const pipe = new THREE.Mesh(
         new THREE.CylinderGeometry(0.03, 0.03, 3, 8),
         mat
