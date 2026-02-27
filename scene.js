@@ -49,8 +49,6 @@ for (let i = 0; i < 6; i++) {
     scene.add(house);
 }
 
-camera.position.set(0, 0, 0);
-
 function animate( time ) {
   updateCamera(camera, controls);
 
