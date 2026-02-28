@@ -3,6 +3,10 @@ import * as THREE from 'three';
 export function createSun({ x = 0, y = 0, z = 0 } = {}) {
 
     const sunGroup = new THREE.Group();
+    const sunGeometry = new THREE.SphereGeometry(1, 32, 32);
+    const sunMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
+    sunGroup.add(sunMesh);
 
     const light = new THREE.DirectionalLight(0xffffff, 5);
     light.target.position.set(0, 0, 0);
