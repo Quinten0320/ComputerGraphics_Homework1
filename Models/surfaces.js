@@ -5,17 +5,19 @@ const loader = new THREE.TextureLoader();
 export function createSurface() {
     const surface = new THREE.Group();
 
-    const grass = createGrass(0x228B22, { x: 0, y: -1.1, z: 0 });
+    const grass = createGrass(0x228B22, { x: 0, y: -1.1, z: -5 });
     const road = createRoad(0x5c5c5c, { x: 0, y: -1, z: 0 });
     const road2 = createRoad(0x5c5c5c, { x: 14, y: -1, z: 0 });
+    const road3 = createRoad(0x5c5c5c, { x: 0, y: -1, z: -10 });
     const circle = createCircle(0x5c5c5c, { x: 13, y: -1, z: 1 });
     road2.rotation.y = Math.PI / 2; 
 
     const driveway = createDriveway(0xA0896B, 12, { x: 0, y: -1, z: -2 });
     const driveway2 = createDriveway(0xA0896B, 16, { x: 16, y: -1, z: 1 });
+    const driveway3 = createDriveway(0xA0896B, 12, { x: 0, y: -1, z: -12 });
     driveway2.rotation.y = Math.PI / 2; 
 
-    surface.add(grass, road, road2, circle, driveway, driveway2);
+    surface.add(grass, road, road2, road3, circle, driveway, driveway2, driveway3);
 
     return surface;
 }
