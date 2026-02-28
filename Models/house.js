@@ -11,6 +11,14 @@ export function createHouse({ showRainPipe = false } = {}) {
     group.add(...createWindows());
     group.add(...createChimneys());
     if (showRainPipe) group.add(createRainPipe());
+
+    group.traverse((obj) => {
+        if (obj.isMesh) {
+            obj.castShadow = true;
+            obj.receiveShadow = true;
+        }
+    });
+
     return group;
 }
 
