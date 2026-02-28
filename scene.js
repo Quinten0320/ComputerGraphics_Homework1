@@ -1,39 +1,26 @@
 import * as THREE from 'three';
 import { createSkybox } from './Skybox/skybox.js';
+import { createHouse } from './Models/house.js';
 import { createSurface } from './Models/surfaces.js';
 import { createGarageHouse } from './Models/garageHouse.js';
 import { createCar } from './Models/car.js';
 import { createSun } from './Skybox/light.js';
 import { createAmbientLight } from './Skybox/light.js';
+import { createCamera, updateCamera } from './Skybox/camera.js';
 
-import { OrbitControls } from 'https://unpkg.com/three@0.171.0/examples/jsm/controls/OrbitControls.js';
       
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 //skybox
 createSkybox(scene);
 
 const renderer = new THREE.WebGLRenderer();
+const { camera, controls } = createCamera(renderer);
+
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-//Orbitcontrols
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;   
-controls.dampingFactor = 0.05;   
-
-controls.enableZoom = true;      
-controls.minDistance = 2;        
-controls.maxDistance = 50;       
-
-controls.target.set(0.1, 0, 0);
-controls.update();
-
-controls.target.set(0.1, 0, 0);
-controls.update();
-
-renderer.setSize( window.innerWidth, window.innerHeight ); //set size of renderer to size of window
+renderer.setSize( window.innerWidth, window.innerHeight ); //set size of renderer to size of window (might be redundant?)
 document.body.appendChild( renderer.domElement );
 
 //surface
@@ -55,10 +42,15 @@ const sun = createSun({ x: -60, y: 40, z: -60 });
 const ambientLight = createAmbientLight(0.3);
 scene.add(sun, ambientLight);
 
-camera.position.set(0, 0, 0);
+// Create 6 houses
+for (let i = 0; i < 6; i++) {
+    const house = createHouse({ showRainPipe: i % 2 === 1 }); //elke 2 huizen regenpjip
+    house.position.set(1 + i * 2, 0, -4);
+    scene.add(house);
+}
 
 function animate( time ) {
-  controls.update();  //Orbitcontrols
+  updateCamera(camera, controls);
 
   carAnimation(time);
 
