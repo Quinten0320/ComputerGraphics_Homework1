@@ -18,7 +18,8 @@ export function createTree({ x = 0, y = 0, z = 0 } = {}) {
                 }
             });
 
-            treeModel.scale.set(0.5, 0.5, 0.5); // mss nog kleiner ofz?
+            const scaleFactor = 0.4 + Math.random() * 0.2; // Random scale between 0.4 and 0.6 to look more natural 😛😛
+            treeModel.scale.set(scaleFactor, scaleFactor, scaleFactor);
             treeModel.position.set(0, 0, 0);
 
             treeGroup.add(treeModel);

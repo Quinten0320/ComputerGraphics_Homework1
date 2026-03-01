@@ -30,12 +30,23 @@ const surface = createSurface();
 scene.add(surface);
 
 //trees
-for (let i = 0; i < 6; i++) {
-  for (let j = 0; j < 4; j++) {
-    const tree = createTree({ x: i * 2, y: -1, z: 2 + j * 2 });
-    scene.add(tree);
+const treeRows = [
+  { startX: 0, cols: 6, rows: 4, xStep: 2, zStep: 2, zOffset: 2, skew: 0 },
+  { startX: 13, cols: 4, rows: 3, xStep: 2, zStep: 2, zOffset: 4, skew: -0.5 },
+  { startX: 16, cols: 3, rows: 2, xStep: 2, zStep: 2, zOffset: -18.5, skew: 0 }
+];
+
+treeRows.forEach(row => {
+  for (let i = 0; i < row.cols; i++) {
+    for (let j = 0; j < row.rows; j++) {
+      const x = row.startX + i * row.xStep;
+      const z = row.zOffset + j * row.zStep + i * row.skew;
+
+      const tree = createTree({ x, y: -1.5, z });
+      scene.add(tree);
+    }
   }
-}
+});
 
 //car
 
