@@ -22,9 +22,7 @@ export function createStreetLight({ x = 0, y = 0, z = 0 } = {}) {
     coneMesh2.rotation.x = Math.PI;
     coneMesh2.position.y = 1.25;
 
-    group.add(coneMesh);
-    group.add(coneMesh2);
-    group.add(poleMesh);
+    group.add(coneMesh, coneMesh2, poleMesh);
 
     group.traverse((child) => {
         if (child.isMesh) {
