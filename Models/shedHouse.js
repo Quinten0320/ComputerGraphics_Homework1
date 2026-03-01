@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export function createGarageHouse({ x = 0, y = 0, z = 0 } = {}) {
+export function createShedHouse({ x = 0, y = 0, z = 0 } = {}) {
     const house = new THREE.Group();
 
     const groundFloor = createGroundFloor();
@@ -21,6 +21,7 @@ export function createGarageHouse({ x = 0, y = 0, z = 0 } = {}) {
     return house;
 }
 
+// private functions
 function createShed(color = 0x654321, { x = 0, y = 0, z = 0 } = {}) {
     const shedGroup = new THREE.Group();
     const loader = new THREE.TextureLoader();

@@ -10,6 +10,7 @@ export function createHouse({ showRainPipe = false } = {}) {
     group.add(createCanopy());
     group.add(...createWindows());
     group.add(...createChimneys());
+    group.add(createFence());
     if (showRainPipe) group.add(createRainPipe());
 
     group.traverse((obj) => {
@@ -124,8 +125,11 @@ function createWindows() {
         // 1e verdieping links
         makeWindow(0.22, 0.55, -0.6, 1.5, 1.06),
 
-        //1e verdieping rechts
+        // 1e verdieping rechts
         makeWindow(0.75, 0.55, 0.45, 1.5, 1.06),
+
+        // tuin
+        makeWindow(1, 0.5, 0, 1.5, -1.05),
     ];
 }
 
@@ -170,4 +174,27 @@ function createRainPipe() {
     pipe.position.set(1.1, 0.5, 1.05);
 
     return pipe;
+}
+
+function createFence() {
+    const group = new THREE.Group();
+    const loader = new THREE.TextureLoader();
+    const fenceTexture = loader.load('./Textures/Fence.jpg');
+    fenceTexture.wrapS = THREE.RepeatWrapping;
+    fenceTexture.wrapT = THREE.RepeatWrapping;
+    fenceTexture.repeat.set(1, 1);
+
+    const mat = new THREE.MeshStandardMaterial({ map: fenceTexture });
+
+    const fence = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.5, 3),mat);
+    const fence2 = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.5, 3),mat);
+    const fence3 = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.5, 2),mat);
+
+    fence.position.set(-0.95, -0.6, -2.5); 
+    fence2.position.set(1, -0.6, -2.5); 
+    fence3.position.set(0.02, -0.6, -4); 
+    fence3.rotation.y = Math.PI / 2;
+
+    group.add(fence, fence2, fence3);
+    return group;
 }

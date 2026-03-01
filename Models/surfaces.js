@@ -5,21 +5,24 @@ const loader = new THREE.TextureLoader();
 export function createSurface() {
     const surface = new THREE.Group();
 
-    const grass = createGrass(0x228B22, { x: 0, y: -1.1, z: 0 });
+    const grass = createGrass(0x228B22, { x: 3, y: -1.1, z: -5 });
     const road = createRoad(0x5c5c5c, { x: 0, y: -1, z: 0 });
     const road2 = createRoad(0x5c5c5c, { x: 14, y: -1, z: 0 });
+    const road3 = createRoad(0x5c5c5c, { x: 0, y: -1, z: -10 });
     const circle = createCircle(0x5c5c5c, { x: 13, y: -1, z: 1 });
     road2.rotation.y = Math.PI / 2; 
 
     const driveway = createDriveway(0xA0896B, 12, { x: 0, y: -1, z: -2 });
     const driveway2 = createDriveway(0xA0896B, 16, { x: 16, y: -1, z: 1 });
+    const driveway3 = createDriveway(0xA0896B, 12, { x: 0, y: -1, z: -12 });
     driveway2.rotation.y = Math.PI / 2; 
 
-    surface.add(grass, road, road2, circle, driveway, driveway2);
+    surface.add(grass, road, road2, road3, circle, driveway, driveway2, driveway3);
 
     return surface;
 }
 
+// private functions
 function createRoad(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
     const geometry = new THREE.BoxGeometry(15, 0.1, 2);
     geometry.translate(7.5, 0, 0);
@@ -62,23 +65,29 @@ function createCircle(color = 0x00ff00, { x = 0, y = 0, z = 0 } = {}) {
 }
 
 function createGrass(color = 0x228B22, { x = 0, y = 0, z = 0 } = {}) {
-    const geometry = new THREE.BoxGeometry(30, 0.1, 30);
+
+    const geometry = new THREE.PlaneGeometry(25, 30);
     geometry.translate(8, 0, 0);
 
     const grassTexture = loader.load('./Textures/grass.jpg');
-        grassTexture.wrapS = THREE.RepeatWrapping;
-        grassTexture.wrapT = THREE.RepeatWrapping;
-        grassTexture.repeat.set(50, 50);
+    grassTexture.wrapS = THREE.RepeatWrapping;
+    grassTexture.wrapT = THREE.RepeatWrapping;
+    grassTexture.repeat.set(50, 50);
 
-    const material = new THREE.MeshStandardMaterial({ 
+    const material = new THREE.MeshStandardMaterial({
         color: color,
-        map: grassTexture
+        map: grassTexture,
+        side: THREE.DoubleSide 
     });
+
     const mesh = new THREE.Mesh(geometry, material);
+
+    mesh.rotation.x = -Math.PI / 2;
 
     mesh.position.set(x, y, z);
     mesh.receiveShadow = true;
     mesh.castShadow = false;
+
     return mesh;
 }
 
