@@ -7,6 +7,7 @@ import { createCar } from './Models/car.js';
 import { createSun } from './Skybox/light.js';
 import { createAmbientLight } from './Skybox/light.js';
 import { createCamera, updateCamera } from './Skybox/camera.js';
+import { createTree } from './Models/tree.js';
 import { createStreetLight } from './Models/streetLight.js';
 
       
@@ -28,7 +29,16 @@ document.body.appendChild( renderer.domElement );
 const surface = createSurface();
 scene.add(surface);
 
-// car
+//trees
+for (let i = 0; i < 6; i++) {
+  for (let j = 0; j < 4; j++) {
+    const tree = createTree({ x: i * 2, y: -1, z: 2 + j * 2 });
+    scene.add(tree);
+  }
+}
+
+//car
+
 const { carGroup, update: carAnimation } = createCar({ x: 13, y: -0.8, z: 1 });
 scene.add(carGroup);
 
