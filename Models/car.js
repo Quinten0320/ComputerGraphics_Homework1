@@ -13,7 +13,7 @@ export function createCar({ x = 0, y = 0, z = 0 } = {}) {
             child.castShadow = true;
             child.receiveShadow = true;
         }
-        });
+        }); 
 
         carModel.scale.set(0.1, 0.1, 0.1);
         carModel.position.set(0, 0, 0);

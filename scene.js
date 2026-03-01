@@ -7,6 +7,7 @@ import { createCar } from './Models/car.js';
 import { createSun } from './Skybox/light.js';
 import { createAmbientLight } from './Skybox/light.js';
 import { createCamera, updateCamera } from './Skybox/camera.js';
+import { createStreetLight } from './Models/streetLight.js';
 
       
 const scene = new THREE.Scene();
@@ -27,8 +28,6 @@ document.body.appendChild( renderer.domElement );
 const surface = createSurface();
 scene.add(surface);
 
-
-
 // car
 const { carGroup, update: carAnimation } = createCar({ x: 13, y: -0.8, z: 1 });
 scene.add(carGroup);
@@ -37,6 +36,21 @@ scene.add(carGroup);
 const sun = createSun({ x: -60, y: 40, z: 60 });
 const ambientLight = createAmbientLight(0.3);
 scene.add(sun, ambientLight);
+
+// street lights
+const streetLightPositions = [
+  { x: 3, z: -1 },
+  { x: 9, z: -1 },
+  { x: 3, z: -11 },
+  { x: 9, z: -11 },
+  { x: 13, z: -5 }
+];
+
+streetLightPositions.forEach(pos => {
+  const streetLight = createStreetLight({ x: pos.x, y: 0, z: pos.z });
+  scene.add(streetLight);
+});
+
 
 // housing
 // Create 2 rows of 6 houses
@@ -58,6 +72,7 @@ for (let i = 0; i < 4; i++) {
     scene.add(garageHouse);
 }
 
+// animation loop
 function animate( time ) {
   updateCamera(camera, controls);
 
